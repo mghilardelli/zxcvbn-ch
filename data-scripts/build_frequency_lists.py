@@ -29,12 +29,11 @@ passed data dir, or vice-versa.
 
 # maps dict name to num words. None value means "include all words"
 DICTIONARIES = dict(
-    us_tv_and_film    = 30000,
-    english_wikipedia = 30000,
-    passwords         = 30000,
-    surnames          = 10000,
-    male_names        = None,
-    female_names      = None,
+    passwords 	      = None,
+    en_50k            = None,
+    de_50k            = None,
+    fr_50k            = None,
+    it_50k            = None,
 )
 
 # returns {list_name: {token: rank}}, as tokens and ranks occur in each file.
@@ -56,7 +55,7 @@ def parse_frequency_lists(data_dir):
     for freq_list_name in DICTIONARIES:
         if freq_list_name not in freq_lists:
             msg = 'Warning: %s appears in DICTIONARY settings but not in %s directory. Excluding.'
-            print msg % (freq_list, data_dir)
+            print msg % (freq_list_name, data_dir)
     return freq_lists
 
 def is_rare_and_short(token, rank):
