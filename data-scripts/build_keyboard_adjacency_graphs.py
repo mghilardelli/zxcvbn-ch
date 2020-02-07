@@ -1,14 +1,21 @@
 #!/usr/bin/python
 import sys
-import simplejson
+import json
 
 def usage():
     return '''
-constructs adjacency_graphs.coffee from QWERTY and DVORAK keyboard layouts
+constructs adjacency_graphs.coffee from QWERTZ, QWERTY and DVORAK keyboard layouts
 
 usage:
 %s adjacency_graphs.coffee
 ''' % sys.argv[0]
+
+qwertz = r'''
+`~ 1+ 2" 3* 4$ 5% 6& 7/ 8( 9) 0= '? ^`
+    qQ wW eE rR tT zZ uU iI oO pP [{ ]} \|
+     aA sS dD fF gG hH jJ kK lL ;: '"
+      yY xX cC vV bB nN mM ,; .: -_
+'''
 
 qwerty = r'''
 `~ 1! 2@ 3# 4$ 5% 6^ 7& 8* 9( 0) -_ =+
@@ -98,11 +105,12 @@ if __name__ == '__main__':
         f.write('adjacency_graphs = \n  ')
         lines = []
         for graph_name, args in [('qwerty', (qwerty, True)),
+                                 ('qwertz', (qwertz, True)),
                                  ('dvorak', (dvorak, True)),
                                  ('keypad', (keypad, False)),
                                  ('mac_keypad', (mac_keypad, False))]:
             graph = build_graph(*args)
-            lines.append('%s: %s' % (graph_name, simplejson.dumps(graph, sort_keys=True)))
+            lines.append('%s: %s' % (graph_name, json.dumps(graph, sort_keys=True)))
         f.write('\n  '.join(lines))
         f.write('\n\n')
         f.write('module.exports = adjacency_graphs\n')
