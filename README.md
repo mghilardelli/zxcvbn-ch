@@ -4,7 +4,10 @@ Supports wordlists in following languages
 - French (fr)
 - Italian (it)
 - English (en)
+
 (source https://github.com/hermitdave/FrequencyWords)
+
+supporting QWERTZ keyboard
 
 ```
 _________________________________________________/\/\___________________
